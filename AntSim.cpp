@@ -1,11 +1,12 @@
 // AntSim.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
-#include <iostream>
 #include "objectclasses.h"
 #include "world.h"
 
+#include <iostream>
 #include <Windows.h>
+
 
 
 void assign_to_map(World mainworld)
@@ -35,7 +36,11 @@ int main()
         std::cout << coordinate.first.x_coord << " " << coordinate.first.y_coord << " " << coordinate.first.z_coord << "\n";
     }
 
-    //mainworld.all_coordinates.at(Coord(0, 0, 0));
+
+    /*if (mainworld.all_coordinates[0, 0, 0] == nullptr)
+    {
+        ;
+    }*/
 
     /*while (ant1.get_loc().get_x() < 99) 
     {

@@ -10,14 +10,18 @@ class Coord
 
 public:
 
+	Coord() {}
+
+	int x_coord = 0;
+	int y_coord = 0;
+	int z_coord = 0;
+
+	// operator== is required to compare keys in case of hash collision
 	bool operator==(Coord const& p) const
 	{
 		return (x_coord == p.x_coord && y_coord == p.y_coord && z_coord == p.z_coord);
 	}
 
-	int x_coord;
-	int y_coord;
-	int z_coord;
 
 	void set_xyz(int x, int y, int z)
 	{
@@ -26,7 +30,11 @@ public:
 		z_coord = z;
 	}
 
-	// operator== is required to compare keys in case of hash collision
+
+	std::tuple<int, int, int> get_xyz()
+	{
+		return {x_coord, y_coord, z_coord};
+	}
 
 
 	/*void set_x(int x)
@@ -42,7 +50,7 @@ public:
 	void set_z(int z)
 	{
 		z_coord = z;
-	}*/
+	}
 
 	int get_x()
 	{
@@ -57,7 +65,7 @@ public:
 	int get_z()
 	{
 		return z_coord;
-	}
+	}*/
 };
 
 
@@ -105,7 +113,8 @@ public:
 		}
 	}
 
-	void update_object_loc(Coord curr_coord, Object* obj_ptr)
+
+	/*void update_object_loc(Coord curr_coord, Object* obj_ptr)
 	{
 		if (all_coordinates.at(curr_coord) == nullptr)
 		{
@@ -116,7 +125,7 @@ public:
 	void reset_coord(Coord curr_coord)
 	{
 		all_coordinates.at(curr_coord) = nullptr;
-	}
+	}*/
 };
 
 
@@ -127,9 +136,6 @@ public:
 	get base coordinate
 	apply object to the base coord
 	for the size of the object (x,y,z) spread out in both directions for all 3, until the x/y/z_size number is met
-
-
-
 
 
 	// need to check what value the MAP coordinate is currently holding
