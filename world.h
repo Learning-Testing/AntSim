@@ -4,6 +4,12 @@
 
 #include "objectclasses.h"
 
+#include <boost/multi_index_container.hpp>
+#include <boost/multi_index/indexed_by.hpp>
+#include <boost/multi_index/hashed_index.hpp>
+#include <boost/multi_index/mem_fun.hpp>
+
+namespace bmi = boost::multi_index;
 
 class Coord
 {
@@ -85,6 +91,16 @@ namespace std
 	};
 
 
+typedef bmi::multi_index_container<
+	Coord,
+	bmi::indexed_by<
+	bmi::hashed_unique<
+	bmi::const_mem_fun<Coord, std::tuple<int, int, int>, &Coord::get_xyz>
+	>
+	>
+> all_coordinates;
+
+
 class World
 {
 private:
@@ -136,7 +152,6 @@ public:
 	get base coordinate
 	apply object to the base coord
 	for the size of the object (x,y,z) spread out in both directions for all 3, until the x/y/z_size number is met
-
 
 	// need to check what value the MAP coordinate is currently holding
 
